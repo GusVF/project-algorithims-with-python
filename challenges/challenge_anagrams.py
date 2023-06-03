@@ -1,13 +1,28 @@
+def merge(left, right):
+    result = []
+    i, j = 0, 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return ''.join(result)
+
+
 def sorting(chars: str):
-    chars_list = list(chars.lower())
-    for i in range(1, len(chars_list)):
-        key = chars_list[i]
-        j = i - 1
-        while j >= 0 and chars_list[j] > key:
-            chars_list[j + 1] = chars_list[j]
-            j -= 1
-        chars_list[j + 1] = key
-    return ''.join(chars_list)
+    if len(chars) <= 1:
+        return chars
+
+    mid = len(chars) // 2
+    left = sorting(chars[:mid])
+    right = sorting(chars[mid:])
+    return merge(left, right)
 
 
 def is_anagram(first_string: str, second_string: str):
