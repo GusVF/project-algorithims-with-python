@@ -1,4 +1,3 @@
-
 def is_palindrome_recursive(
         word: str, low_index: int = 0, high_index: int = None
         ):
